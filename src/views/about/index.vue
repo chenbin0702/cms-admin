@@ -3,7 +3,8 @@
     <div class="card mb10">
       <h4 class="title">简介</h4>
       <span class="text">
-        <el-link type="primary" href="https://github.com/chenbin0702/cms-admin" target="_blank">CMS-Admin</el-link>，一个基于 Vue 3、TypeScript 和 Element-Plus
+        <el-link type="primary" href="https://github.com/chenbin0702/cms-admin" target="_blank">CMS-Admin</el-link>，一个基于 Vue
+        3、TypeScript 和 Element-Plus
         的企业级内容管理系统，致力于为您提供一个流畅、直观且功能强大的内容管理平台。它不仅融合了最新的技术趋势，而且通过精心设计，确保了系统的简洁性和高效，让企业可以专注于内容运营和管理。
       </span>
     </div>

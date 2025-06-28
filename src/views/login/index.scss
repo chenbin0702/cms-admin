@@ -1,9 +1,55 @@
 .login-container {
   height: 100%;
   min-height: 550px;
-  background-color: #eeeeee;
-  background-image: url('@/assets/images/login_bg.svg');
-  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  
+  // 日间模式背景
+  background: linear-gradient(135deg, 
+    rgba(74, 144, 226, 0.1) 0%, 
+    rgba(80, 170, 241, 0.15) 25%,
+    rgba(119, 188, 255, 0.1) 50%,
+    rgba(162, 209, 255, 0.12) 75%,
+    rgba(230, 245, 255, 0.2) 100%
+  );
+  
+  // 夜间模式背景
+  html.dark & {
+    background: linear-gradient(135deg,
+      rgba(16, 24, 40, 0.95) 0%,
+      rgba(30, 41, 59, 0.9) 25%,
+      rgba(45, 55, 72, 0.85) 50%,
+      rgba(26, 32, 44, 0.9) 75%,
+      rgba(10, 18, 30, 0.95) 100%
+    );
+  }
+  
+  // 添加动态背景装饰
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 20%, 
+      rgba(99, 179, 237, 0.1) 0%, 
+      transparent 50%),
+      radial-gradient(circle at 80% 80%, 
+      rgba(139, 92, 246, 0.1) 0%, 
+      transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    z-index: -1;
+  }
+  
+  html.dark &::before {
+    background: radial-gradient(circle at 30% 20%, 
+      rgba(59, 130, 246, 0.05) 0%, 
+      transparent 50%),
+      radial-gradient(circle at 80% 80%, 
+      rgba(139, 92, 246, 0.08) 0%, 
+      transparent 50%);
+  }
 
   .login-box {
     position: relative;
@@ -14,13 +60,66 @@
     width: 96.5%;
     height: 94%;
     padding: 0 50px;
-    background-color: rgb(255 255 255 / 80%);
-    border-radius: 10px;
+    border-radius: 24px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.1),
+      0 2px 16px rgba(0, 0, 0, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    // 日间模式玻璃效果
+    background: rgba(255, 255, 255, 0.85);
+    
+    // 夜间模式玻璃效果
+    html.dark & {
+      background: rgba(30, 41, 59, 0.8);
+      border: 1px solid rgba(99, 179, 237, 0.2);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 2px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(99, 179, 237, 0.1);
+    }
+    
+    transition: all 0.3s ease;
 
     .dark {
       position: absolute;
       top: 13px;
       right: 18px;
+      z-index: 10;
+    }
+    
+    // 移动端暗黑模式切换按钮位置
+    @media screen and (width <= 768px) {
+      .dark {
+        position: fixed;
+        top: 24px;
+        right: 24px;
+        z-index: 1000;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+        
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+    
+    @media screen and (width <= 480px) {
+      .dark {
+        top: 18px;
+        right: 18px;
+        transform: scale(0.9);
+      }
+    }
+    
+    @media screen and (width <= 360px) {
+      .dark {
+        top: 16px;
+        right: 16px;
+        transform: scale(0.85);
+      }
     }
 
     .login-left {
@@ -36,33 +135,194 @@
     .login-form {
       width: 420px;
       padding: 50px 40px 45px;
-      background-color: var(--el-bg-color);
-      border-radius: 10px;
-      box-shadow: rgb(0 0 0 / 10%) 0 2px 10px 2px;
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      
+      // 日间模式表单样式
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      
+      // 夜间模式表单样式
+      html.dark & {
+        background: rgba(45, 55, 72, 0.9);
+        border: 1px solid rgba(99, 179, 237, 0.3);
+        box-shadow: 
+          0 12px 40px rgba(0, 0, 0, 0.4),
+          0 4px 16px rgba(0, 0, 0, 0.2),
+          inset 0 1px 0 rgba(99, 179, 237, 0.2);
+      }
+      
+      transition: all 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 
+          0 16px 50px rgba(0, 0, 0, 0.12),
+          0 6px 20px rgba(0, 0, 0, 0.06),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+          
+        html.dark & {
+          box-shadow: 
+            0 16px 50px rgba(0, 0, 0, 0.5),
+            0 6px 20px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(99, 179, 237, 0.3);
+        }
+      }
 
       .login-logo {
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 45px;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 2px;
+          background: linear-gradient(90deg, 
+            rgba(99, 179, 237, 0.8) 0%, 
+            rgba(139, 92, 246, 0.8) 100%);
+          border-radius: 1px;
+          
+          html.dark & {
+            background: linear-gradient(90deg, 
+              rgba(99, 179, 237, 0.6) 0%, 
+              rgba(139, 92, 246, 0.6) 100%);
+          }
+        }
 
         .login-icon {
           width: 60px;
           height: 52px;
+          filter: drop-shadow(0 2px 8px rgba(99, 179, 237, 0.3));
+          transition: transform 0.3s ease;
+          
+          &:hover {
+            transform: scale(1.05) rotate(5deg);
+          }
         }
 
         .logo-text {
           padding: 0 0 0 25px;
           margin: 0;
           font-size: 42px;
-          font-weight: bold;
-          color: #34495e;
+          font-weight: 700;
           white-space: nowrap;
+          background: linear-gradient(135deg, 
+            #2563eb 0%, 
+            #3b82f6 25%, 
+            #60a5fa  50%, 
+            #8b5cf6 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          position: relative;
+          
+          html.dark & {
+            background: linear-gradient(135deg, 
+              #60a5fa 0%, 
+              #93c5fd 25%, 
+              #ddd6fe 50%, 
+              #c4b5fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          
+          &::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, 
+              rgba(37, 99, 235, 0.1) 0%, 
+              rgba(59, 130, 246, 0.1) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(2px);
+            z-index: -1;
+          }
         }
       }
 
       .el-form-item {
         margin-bottom: 40px;
+        
+        :deep(.el-input) {
+          .el-input__wrapper {
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: none;
+            border: 1px solid rgba(209, 213, 219, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            
+            html.dark & {
+              background: rgba(55, 65, 81, 0.6);
+              border-color: rgba(75, 85, 99, 0.5);
+            }
+            
+            &:hover {
+              border-color: rgba(99, 179, 237, 0.5);
+              background: rgba(255, 255, 255, 0.9);
+              
+              html.dark & {
+                border-color: rgba(99, 179, 237, 0.6);
+                background: rgba(55, 65, 81, 0.8);
+              }
+            }
+            
+            &.is-focus {
+              border-color: #3b82f6;
+              box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+              background: rgba(255, 255, 255, 0.95);
+              
+              html.dark & {
+                border-color: #60a5fa;
+                box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+                background: rgba(55, 65, 81, 0.9);
+              }
+            }
+          }
+          
+          .el-input__inner {
+            color: #374151;
+            font-weight: 500;
+            
+            html.dark & {
+              color: #f3f4f6;
+            }
+            
+            &::placeholder {
+              color: #9ca3af;
+              font-weight: 400;
+              
+              html.dark & {
+                color: #6b7280;
+              }
+            }
+          }
+          
+          .el-input__prefix-inner {
+            color: #6b7280;
+            
+            html.dark & {
+              color: #9ca3af;
+            }
+          }
+        }
       }
 
       .login-btn {
@@ -74,6 +334,91 @@
 
         .el-button {
           width: 185px;
+          height: 48px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 16px;
+          border: none;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+              transparent, 
+              rgba(255, 255, 255, 0.3), 
+              transparent);
+            transition: left 0.6s ease;
+          }
+          
+          &:hover::before {
+            left: 100%;
+          }
+          
+          // 重置按钮样式
+          &:not(.el-button--primary) {
+            background: rgba(156, 163, 175, 0.1);
+            color: #6b7280;
+            border: 1px solid rgba(156, 163, 175, 0.3);
+            
+            html.dark & {
+              background: rgba(75, 85, 99, 0.3);
+              color: #d1d5db;
+              border: 1px solid rgba(75, 85, 99, 0.5);
+            }
+            
+            &:hover {
+              background: rgba(156, 163, 175, 0.2);
+              border-color: rgba(156, 163, 175, 0.5);
+              transform: translateY(-2px);
+              box-shadow: 0 4px 16px rgba(156, 163, 175, 0.2);
+              
+              html.dark & {
+                background: rgba(75, 85, 99, 0.5);
+                border-color: rgba(75, 85, 99, 0.7);
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+              }
+            }
+          }
+          
+          // 主按钮样式
+          &.el-button--primary {
+            background: linear-gradient(135deg, 
+              #3b82f6 0%, 
+              #2563eb 25%, 
+              #1d4ed8 50%, 
+              #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
+            
+            html.dark & {
+              background: linear-gradient(135deg, 
+                #60a5fa 0%, 
+                #3b82f6 25%, 
+                #2563eb 50%, 
+                #a855f7 100%);
+              box-shadow: 0 4px 16px rgba(96, 165, 250, 0.4);
+            }
+            
+            &:hover {
+              transform: translateY(-3px);
+              box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+              
+              html.dark & {
+                box-shadow: 0 8px 25px rgba(96, 165, 250, 0.5);
+              }
+            }
+            
+            &:active {
+              transform: translateY(-1px);
+            }
+          }
         }
       }
     }
@@ -81,13 +426,429 @@
 }
 
 @media screen and (width <= 1250px) {
-  .login-left {
-    display: none;
+  .login-container .login-box {
+    .login-left {
+      display: none;
+    }
+    
+    .login-form {
+      width: 480px;
+      max-width: 90%;
+    }
   }
 }
 
-@media screen and (width <= 600px) {
+// 平板和大屏手机 (768px - 481px)
+@media screen and (width <= 768px) and (width > 480px) {
+  .login-container {
+    padding: 16px;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    
+    .login-box {
+      width: 100%;
+      height: auto;
+      min-height: calc(100vh - 32px);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        0 8px 25px rgba(0, 0, 0, 0.05);
+      
+      html.dark & {
+        background: rgba(30, 41, 59, 0.95);
+        border: 1px solid rgba(99, 179, 237, 0.2);
+        box-shadow: 
+          0 20px 60px rgba(0, 0, 0, 0.4),
+          0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+    }
+    
+    .login-form {
+      width: 100% !important;
+      max-width: none;
+      padding: 48px 32px;
+      margin: auto 0;
+      background: transparent;
+      border-radius: 0;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      
+      .login-logo {
+        margin-bottom: 48px;
+        
+        .login-icon {
+          width: 56px;
+          height: 50px;
+        }
+        
+        .logo-text {
+          font-size: 36px;
+          padding-left: 22px;
+        }
+      }
+      
+      .el-form-item {
+        margin-bottom: 32px;
+        
+        :deep(.el-input) {
+          .el-input__wrapper {
+            height: 56px;
+            padding: 0 20px;
+            border-radius: 16px;
+            font-size: 16px;
+          }
+        }
+      }
+      
+      .login-btn {
+        margin-top: 40px;
+        flex-direction: column;
+        gap: 20px;
+        
+        .el-button {
+          width: 100%;
+          height: 56px;
+          font-size: 18px;
+          font-weight: 600;
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+}
+
+// 主流手机设备 (480px以下，包括400px以下设备)
+@media screen and (width <= 480px) {
+  .login-container {
+    padding: 8px;
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    
+    .login-box {
+      width: 100%;
+      min-height: calc(100vh - 16px);
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        0 8px 25px rgba(0, 0, 0, 0.05);
+      
+      html.dark & {
+        background: rgba(30, 41, 59, 0.95);
+        border: 1px solid rgba(99, 179, 237, 0.2);
+        box-shadow: 
+          0 20px 60px rgba(0, 0, 0, 0.4),
+          0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+    }
+    
+    .login-form {
+      width: 100% !important;
+      max-width: none;
+      padding: 36px 24px;
+      margin: auto 0;
+      background: transparent;
+      border-radius: 0;
+      backdrop-filter: none;
+      border: none;
+      box-shadow: none;
+      
+      .login-logo {
+        margin-bottom: 36px;
+        
+        .login-icon {
+          width: 48px;
+          height: 43px;
+        }
+        
+        .logo-text {
+          font-size: 30px;
+          padding-left: 18px;
+        }
+      }
+      
+      .el-form-item {
+        margin-bottom: 24px;
+        
+        :deep(.el-input) {
+          .el-input__wrapper {
+            height: 52px;
+            padding: 0 18px;
+            border-radius: 14px;
+            font-size: 16px;
+          }
+        }
+      }
+      
+      .login-btn {
+        margin-top: 32px;
+        flex-direction: column;
+        gap: 16px;
+        
+        .el-button {
+          width: 100%;
+          height: 52px;
+          font-size: 17px;
+          font-weight: 600;
+          border-radius: 14px;
+        }
+      }
+    }
+  }
+}
+
+// 移动端横屏适配
+@media screen and (max-height: 650px) and (orientation: landscape) and (width <= 768px) {
+  .login-container {
+    padding: 8px 16px;
+    
+    .login-box {
+      min-height: calc(100vh - 16px);
+      border-radius: 12px;
+    }
+    
+    .login-form {
+      padding: 24px 32px;
+      
+      .login-logo {
+        margin-bottom: 24px;
+        
+        .login-icon {
+          width: 40px;
+          height: 36px;
+        }
+        
+        .logo-text {
+          font-size: 28px;
+          padding-left: 16px;
+        }
+      }
+      
+      .el-form-item {
+        margin-bottom: 20px;
+        
+        :deep(.el-input) {
+          .el-input__wrapper {
+            height: 46px;
+            border-radius: 12px;
+            font-size: 15px;
+          }
+        }
+      }
+      
+      .login-btn {
+        margin-top: 24px;
+        flex-direction: row;
+        gap: 16px;
+        
+        .el-button {
+          height: 46px;
+          font-size: 16px;
+          border-radius: 12px;
+        }
+      }
+    }
+  }
+}
+
+// 动画关键帧
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(1deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(-1deg);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// 为登录表单添加进入动画
+.login-form {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.login-left {
+  animation: slideInFromLeft 0.8s ease-out;
+}
+
+// 移动端减少动画，提升性能
+@media (prefers-reduced-motion: reduce) {
+  .login-form,
+  .login-left,
+  .login-container::before {
+    animation: none !important;
+  }
+  
+  * {
+    transition: none !important;
+  }
+}
+
+// 移动端优化：减少动画
+@media screen and (width <= 768px) {
+  .login-container::before {
+    animation-duration: 30s; // 减慢动画速度
+    opacity: 0.6; // 减少背景动画强度
+  }
+  
+  .login-form,
+  .login-left {
+    animation-duration: 0.5s; // 加快进入动画
+  }
+  
+  // 移动端触摸优化
   .login-form {
-    width: 97% !important;
+    :deep(.el-input) {
+      .el-input__wrapper {
+        // 增强触摸友好性
+        min-height: 52px;
+        transition: all 0.2s ease;
+        
+        &:focus-within {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);
+          border-color: #3b82f6;
+          
+          html.dark & {
+            box-shadow: 0 6px 16px rgba(96, 165, 250, 0.25);
+            border-color: #60a5fa;
+          }
+        }
+        
+        &:hover {
+          transform: translateY(-0.5px);
+        }
+      }
+    }
+    
+    .login-btn .el-button {
+      // 触摸反馈
+      transition: all 0.15s ease;
+      
+      &:active {
+        transform: translateY(2px) scale(0.98) !important;
+      }
+      
+      &:hover {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+// 400px以下设备的触摸优化
+@media screen and (width <= 400px) {
+  .login-form {
+    :deep(.el-input) {
+      .el-input__wrapper {
+        // 确保触摸目标足够大
+        min-height: 50px;
+        
+        .el-input__inner {
+          font-size: 16px; // 防止iOS自动缩放
+        }
+      }
+    }
+    
+    .login-btn .el-button {
+      min-height: 50px; // 确保按钮易于点击
+      font-size: 16px;
+    }
+  }
+}
+
+// 极小屏幕设备优化（320px-360px的老设备）
+@media screen and (width <= 360px) {
+  .login-container {
+    padding: 6px;
+    
+    .login-box {
+      min-height: calc(100vh - 12px);
+      border-radius: 8px;
+    }
+    
+    .login-form {
+      padding: 32px 20px;
+      
+      .login-logo {
+        margin-bottom: 32px;
+        
+        .login-icon {
+          width: 44px;
+          height: 40px;
+        }
+        
+        .logo-text {
+          font-size: 28px;
+          padding-left: 16px;
+        }
+      }
+      
+      .el-form-item {
+        margin-bottom: 20px;
+        
+        :deep(.el-input) {
+          .el-input__wrapper {
+            height: 50px;
+            padding: 0 16px;
+            border-radius: 12px;
+            font-size: 15px;
+          }
+        }
+      }
+      
+      .login-btn {
+        margin-top: 28px;
+        gap: 14px;
+        
+        .el-button {
+          height: 50px;
+          font-size: 16px;
+          border-radius: 12px;
+        }
+      }
+    }
   }
 }
