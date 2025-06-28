@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Sz-Admin (升职Admin)** - A Vue 3 + TypeScript admin dashboard framework with comprehensive features for enterprise applications.
+**CMS-Admin** - 企业级内容管理系统，基于 Vue 3 + TypeScript 的现代化后台管理平台，为企业提供完整的内容管理解决方案。
 
 **Tech Stack**: Vue 3.5.13, Vite 6.3.4, TypeScript 5.2.2, Element-Plus 2.9.9, Pinia, Vue Router
 

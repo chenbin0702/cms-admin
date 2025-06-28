@@ -1,5 +1,5 @@
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">Sz-Admin</h1>
-<h4 align="center">基于SpringBoot3、Vue3的轻量级脚手架</h4>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">CMS-Admin</h1>
+<h4 align="center">企业级内容管理系统 - 基于Vue3、TypeScript的现代化后台管理平台</h4>
 <p align="center">
 <a href="https://github.com/feiyuchuixue/sz-boot-parent/stargazers"><img src="https://img.shields.io/github/stars/feiyuchuixue/sz-boot-parent?style=flat-square&logo=GitHub"></a>
 <a href="https://github.com/feiyuchuixue/sz-boot-parent/network/members"><img src="https://img.shields.io/github/forks/feiyuchuixue/sz-boot-parent?style=flat-square&logo=GitHub"></a>
@@ -12,27 +12,15 @@
 
 # 简介
 
-> 接触了很多优秀的开源和闭源项目，在使用过程中也发现一些问题，不甘满足的我遂产生了想法：于是利用休息时间编写了一套后台管理系统，它**灵活、简洁、高效**，拥抱最新的技术，因此**Sz-Admin**便诞生了，也意为升职Admin，升职加薪节节高。
+> CMS-Admin 是一个专为企业级内容管理而设计的后台管理系统，它**灵活、简洁、高效**，采用最新的技术栈，为企业提供完整的内容管理解决方案。
 
-**[Sz Admin](https://szadmin.cn/)** ，一个基于 Spring Boot 3、Vue 3 和 Element-Plus 的开源中后台管理框架，致力于为您提供一个流畅、直观且功能强大的开发框架。它不仅融合了最新的技术趋势，而且通过精心设计，确保了系统的简洁性和高效，让使用者可以专注业务。
+**CMS-Admin** 是一个基于 Vue 3、TypeScript 和 Element-Plus 的企业级内容管理系统，致力于为您提供一个流畅、直观且功能强大的内容管理平台。它不仅融合了最新的技术趋势，而且通过精心设计，确保了系统的简洁性和高效，让企业可以专注于内容运营和管理。
 
 
 
 ## 在线体验
 
-- 官网地址：https://szadmin.cn
-- 文档地址：https://szadmin.cn/md/Help/doc/info/start.html
-- 预览地址：https://preview.szadmin.cn
-- 代码仓库：
-  - 前端：
-    - **Github**：**[sz-admin](https://github.com/feiyuchuixue/sz-admin.git)**
-    - **Gitee**：**[sz-admin](https://gitee.com/feiyuchuixue/sz-admin.git)**
-  - 后端：
-    - **Github**：**[sz-boot-parent](https://github.com/feiyuchuixue/sz-boot-parent.git)**
-    - **Gitee**：**[sz-boot-parent](https://gitee.com/feiyuchuixue/sz-boot-parent.git)**
-  - 部署：
-    - **Github**：**[sz-deploy](https://github.com/feiyuchuixue/sz-deploy.git)**
-    - **Gitee**：**[sz-deploy](https://gitee.com/feiyuchuixue/sz-deploy.git)**
+- GitHub仓库：https://github.com/chenbin0702/cms-admin
 
 ## 系统要求
 
